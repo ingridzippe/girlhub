@@ -1,0 +1,50 @@
+{{#if error}}
+  <div class="alert alert-danger" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    {{error}}
+  </div>
+{{/if}}
+
+<form class="form-profile" method="POST">
+<h3>Profile</h3>
+
+  <div class="form-group">
+    <div id="choose-profile-image">
+      <input id="display-image" name="imgUrl" type='file'/>
+      <div id="choose-photo">change photo</div>
+    </div>
+    <img id="profile-image" src="#" alt="your image" height=80 width=80/>
+  </div>
+
+  <div class="form-group">
+    <label>Your Name</label>
+    <input id="input-box" type="text" value="{{user.displayName}}" name="displayName" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label>Job Title</label>
+    <input id="input-box" type="text" value="{{user.bio}}" name="bio" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label>Description of Job</label>
+    <textarea id="text-box" name="jobDescription" rows="4" cols="60">{{user.jobDescription}}</textarea>
+  </div>
+
+  <div class="form-group">
+    <label>Previous Job Title</label>
+    <input id="input-box" type="text" value="{{user.previousJob}}" name="previousJob" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label>Description of Previous Job </label>
+    <textarea id="text-box" name="previousJobDescription" rows="4" cols="60">{{user.previousJobDescription}}</textarea>
+  </div>
+
+  <div class="form-group">
+    <button id="button" class="btn btn-success">Save Profile</button>
+    <!-- <a id="button" class="btn btn-primary" href="/saveProfile">Register</a> -->
+  </div>
+
+</form>

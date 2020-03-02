@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+</head>
+<body>
+{{#if error}}
+<div class="alert alert-danger" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  {{error}}
+</div>
+{{/if}}
+<form method="POST">
+  <h3>Sign Up</h3>
+  <div class="form-group">
+    <div id="choose-profile-image">
+      <input id="display-image" name="profilePhoto" type='file'/>
+      <div id="choose-photo">choose photo</div>
+    </div>
+    <img id="profile-image" src="#" alt="your image" height=80 width=80/>
+  </div>
+
+  <div class="form-group">
+    <label style="margin-top:20px">Display Name</label>
+    <input id="input-box" type="text" name="displayName" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Career Title</label>
+    <input id="input-box" type="text" name="bio" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Email</label>
+    <input id="input-box" type="text" name="username" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Password</label>
+    <input id="input-box" type="password" name="password" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Verify Password</label>
+    <input id="input-box" type="password" name="passwordRepeat" class="form-control">
+  </div>
+  <div class="form-group">
+    <button id="button" class="btn btn-success">Register</button>
+  </div>
+</form>
+</body>
+
+<script>
+window.addEventListener('load', function() {
+  document.querySelector('input[type="file"]').addEventListener('change', function() {
+      if (this.files && this.files[0]) {
+          document.getElementById("choose-profile-image").style.display="none";
+          var img = document.querySelector('img');  // $('img')[0]
+          img.style.display="block";
+          img.style.margin="auto";
+          console.log('here is the photo');
+          console.log(this.files[0]);
+          var photoInput = document.querySelector("input[name='profilePhoto']");
+          photoInput = this.files[0];
+          console.log("photoInput");
+          console.log(photoInput);
+          img.src = URL.createObjectURL(this.files[0]); // set src to blob url
+          img.onload = imageIsLoaded;
+          console.log(img.src);
+      }
+  });
+});
+
+function imageIsLoaded() {
+  console.log("hello");
+
+}
+</script>

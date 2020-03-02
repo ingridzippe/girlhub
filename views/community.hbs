@@ -1,0 +1,21 @@
+{{! YOUR CODE HERE }}
+
+<div class="profile-icon">
+  <i class="fas fa-user"></i>
+</div>
+<div class="community">
+    {{#each allUsers}}
+    <div class="profile">
+      <img class="personal-photo" src='{{imgUrl}}'>
+      <div class="personal-name">{{displayName}}</div>
+      <div class="personal-bio">{{bio}}</div>
+    </div>
+    {{/each}}
+</div>
+
+
+<!-- <div>{{this.following.displayName}}
+    <form  action="/unfollow/{{this.to._id}}" method="post">
+      <input style="display: inline;" type="submit" value="Unfollow">
+    </form>
+</div>

@@ -1,0 +1,44 @@
+<h4>Profile Picture:</h4>
+<img src='{{user.imgUrl}}'>
+
+<h4>Name:</h4>
+<p>{{user.displayName}}</p>
+
+<h4>Email:</h4>
+<p>{{user.email}}</p>
+
+<h4>Biography:</h4>
+<p>{{user.bio}}</p>
+
+<h4>Tweets:</h4>
+{{#each tweets}}
+    <div>
+        <p>{{user.tweets}}</p>
+    </div>
+{{/each}}
+
+<div class="followingcontainer">
+<h4>Following:</h4>
+{{#each followings}}
+  <div>{{this.following.displayName}}
+      <form  action="/unfollow/{{this.to._id}}" method="post">
+        <input style="display: inline;" type="submit" value="Unfollow">
+      </form>
+  </div>
+{{/each}}
+</div>
+
+<div class="followerscontainer">
+<h4>Followers:</h4>
+{{#each followers}}
+  <p>{{this.follower.displayName}}</p>
+{{/each}}
+</div>
+
+<!-- <form method="POST" action="/follow/{{user._id}}">
+  <input type="submit" class="btn btn-info" id="pintrest" value="{{follow}}">
+</form> -->
+
+<form method="POST" action="/follow/{{user._id}}">
+  <input type="submit" class="btn btn-info" id="followButton" value="{{follow}}">
+</form>
