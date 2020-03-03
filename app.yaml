@@ -14,16 +14,3 @@
 # [START gae_quickstart_yaml]
 runtime: nodejs10
 # [END gae_quickstart_yaml]
-
-handlers:
-- url: /.*
-  secure: always
-  redirect_http_response_code: 301
-  script: auto
-
-env_variables:
-  STRIPE_SECRET_KEY: "sk_live_wpWo0IOM62J1DgFSCHyO4N7m"
-  STRIPE_DATA_KEY: "pk_live_z2eGXcF5uhSGdXQoB1y6SPRP"
-  MONGODB_URI: "mongodb://ingridzippe:a@ds149844.mlab.com:49844/project_of_posts"
-  SECRET: "ingrid"
-  S3_BUCKET: "girlhub-images"
