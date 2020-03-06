@@ -196,7 +196,7 @@ module.exports = function(passport) {
   //   });
   //   profileRequest.end();
   //   res.render('login')
-  // });
+  });
 
   return router;
 };
