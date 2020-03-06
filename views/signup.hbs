@@ -52,25 +52,62 @@
 window.addEventListener('load', function() {
   document.querySelector('input[type="file"]').addEventListener('change', function() {
       if (this.files && this.files[0]) {
-          document.getElementById("choose-profile-image").style.display="none";
-          var img = document.querySelector('img');  // $('img')[0]
-          img.style.display="block";
-          img.style.margin="auto";
-          console.log('here is the photo');
-          console.log(this.files[0]);
-          var photoInput = document.querySelector("input[name='profilePhoto']");
-          photoInput = this.files[0];
-          console.log("photoInput");
-          console.log(photoInput);
-          img.src = URL.createObjectURL(this.files[0]); // set src to blob url
-          img.onload = imageIsLoaded;
-          console.log(img.src);
+        document.getElementById("choose-profile-image").style.display="none";
+        var img = document.querySelector('img');  // $('img')[0]
+        img.style.display="block";
+        img.style.margin="auto";
+        console.log('here is the photo');
+        console.log(this.files[0]);
+        img.src = URL.createObjectURL(this.files[0]); // set src to blob url
+        img.onload = imageIsLoaded(this.files[0]);
+        console.log("img.src");
+        console.log(img.src);
+        var photoInput = document.querySelector("input[name='profilePhoto']");
+        console.log("this");
+        console.log(this);
+        console.log("photoInput");
+        console.log(photoInput);
+        photoInput = this.files[0];
+
       }
   });
 });
-
-function imageIsLoaded() {
-  console.log("hello");
-
+function imageIsLoaded(file) {
+  console.log("image is loaded")
+  console.log(file);
+  console.log(typeof file);
+  fetch('/fileupload', {
+    method: 'POST',
+    body: file
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log(data.path)
+  })
+  .catch(error => {
+    console.error(error)
+  })
 }
+// const handleImageUpload = event => {
+//   const files = event.target.files
+//   const formData = new FormData()
+//   formData.append('myFile', files[0])
+//   console.log("formData");
+//   console.log(formData);
+//
+//   fetch('/fileupload', {
+//     method: 'POST',
+//     body: formData
+//   })
+//   .then(response => response.json())
+//   .then(data => {
+//     console.log(data.path)
+//   })
+//   .catch(error => {
+//     console.error(error)
+//   })
+// }
+// document.querySelector('#display-image').addEventListener('change', event => {
+//   handleImageUpload(event)
+// })
 </script>

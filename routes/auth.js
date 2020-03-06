@@ -3,7 +3,60 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models/models');
+const https = require('https');
 
+const fs = require('fs');
+const AWS = require('aws-sdk');
+
+// Enter copied or downloaded access ID and secret key here
+console.log("1");
+const ID = 'AKIAICV3ZHL6P7A2HU3A';
+const SECRET = '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';
+// The name of the bucket that you have created
+const BUCKET_NAME = 'girlhub-bucket';
+
+console.log("2");
+const s3 = new AWS.S3({
+    accessKeyId: ID,
+    secretAccessKey: SECRET
+});
+console.log("3");
+const params = {
+    Bucket: BUCKET_NAME,
+    CreateBucketConfiguration: {
+        // Set your region here
+        LocationConstraint: "us-west-1"
+    }
+};
+console.log("4");
+s3.createBucket(params, function(err, data) {
+    if (err) console.log(err, err.stack);
+    else console.log('Bucket Created Successfully', data.Location);
+});
+console.log("5");
+const uploadFile = (fileName) => {
+    // Read content from the file
+    console.log("6");
+    console.log("fileName");
+    console.log(fileName);
+    const fileContent = fs.readFileSync(fileName);
+    console.log("17");
+    // Setting up S3 upload parameters
+    const params = {
+        Bucket: BUCKET_NAME,
+        Key: 'cat.jpg', // File name you want to save as in S3
+        Body: fileContent
+    };
+    // Uploading files to the bucket
+    console.log("8");
+    s3.upload(params, function(err, data) {
+        if (err) {
+            throw err;
+        }
+        console.log(`File uploaded successfully. ${data.Location}`);
+    });
+    console.log("9");
+};
 
 module.exports = function(passport) {
 
@@ -20,6 +73,19 @@ module.exports = function(passport) {
     return (userData.password === userData.passwordRepeat);
   };
 
+  router.post('/fileupload', function(req, res) {
+    console.log("file upload");
+    console.log(req.data);
+    console.log(req.body);
+    let form = new multiparty.Form();
+
+    form.parse(req, function(err, fields, files) {
+       Object.keys(fields).forEach(function(name) {
+            console.log('got field named ' + name);
+        });
+    });
+  });
+
   router.post('/signup', function(req, res) {
     if (!validateReq(req.body)) {
       return res.render('signup', {
@@ -27,6 +93,11 @@ module.exports = function(passport) {
       });
     }
     console.log('req.body', req.body)
+    console.log("req.body.profilePhoto");
+    console.log(req.body.profilePhoto);
+    console.log("upload file start");
+    uploadFile(req.body.profilePhoto);
+    console.log("upload file end");
 
     var u = new models.User({
       // Note: Calling the email form field 'username' here is intentional,
@@ -72,6 +143,37 @@ module.exports = function(passport) {
     req.logout();
     res.redirect('/login');
   });
+
+  router.get('/linkedin', function(req, res) {
+    console.log("linkedin");
+
+    GET https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id={78w1f2pk5r3x2y}&redirect_uri=https%3A%2F%2Fdev.example.com%2Fauth%2Flinkedin%2Fcallback&state=fooobar&scope=r_liteprofile%20r_emailaddress%20w_member_social
+    // This sample code will make a request to LinkedIn's API to retrieve and print out some
+    // basic profile information for the user whose access token you provide.
+    // Replace with access token for the r_liteprofile permission
+  //   const accessToken = 'YOUR_ACCESS_TOKEN';
+  //   const options = {
+  //     host: 'api.linkedin.com',
+  //     path: '/v2/me',
+  //     method: 'GET',
+  //     headers: {
+  //       'Authorization': `Bearer ${accessToken}`,
+  //       'cache-control': 'no-cache',
+  //       'X-Restli-Protocol-Version': '2.0.0'
+  //     }
+  //   };
+  //   const profileRequest = https.request(options, function(res) {
+  //     let data = '';
+  //     res.on('data', (chunk) => {
+  //       data += chunk;
+  //     });
+  //     res.on('end', () => {
+  //       const profileData = JSON.parse(data);
+  //       console.log(JSON.stringify(profileData, 0, 2));
+  //     });
+  //   });
+  //   profileRequest.end();
+  // });
 
   return router;
 };
