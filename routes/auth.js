@@ -153,7 +153,12 @@ module.exports = function(passport) {
     console.log("callback");
 
     console.log("window")
-    console.log(window.location.href);
+    console.log("req.query");
+    console.log(req.query);
+    console.log("req.body");
+    console.log(req.body);
+    console.log("req.params");
+    console.log(req.params);
     var url_string = window.location.href; //window.location.href
     var url = new URL(url_string);
     var c = url.searchParams.get("code");
