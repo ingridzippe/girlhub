@@ -165,7 +165,7 @@ module.exports = function(passport) {
     Http.onreadystatechange = (e) => {
       console.log("type of HttpResonseText");
       console.log(typeof Http.responseText);
-      accessToken = Http.responseText.slice(10, Http.responseText.length-1);
+      accessToken = Http.responseText.slice(17, Http.responseText.length-10);
       console.log(accessToken);
 
       // This sample code will make a request to LinkedIn's API to retrieve and print out some
