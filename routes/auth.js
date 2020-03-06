@@ -177,6 +177,7 @@ module.exports = function(passport) {
   router.get('/auth/linkedin/callback', function(req, res) {
     console.log("callback");
     console.log(req.params);
+    res.render('login')
   });
 
   return router;
