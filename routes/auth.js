@@ -169,8 +169,8 @@ module.exports = function(passport) {
     Http.onreadystatechange = (e) => {
       console.log(Http.responseText)
       console.log("accessToken");
+      accessToken = Http.responseText.access_token;
       console.log(accessToken);
-      accessToken = Http.responseText.accessToken;
     }
 
 
