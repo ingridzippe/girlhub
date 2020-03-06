@@ -160,6 +160,7 @@ module.exports = function(passport) {
 
     var clientId = "78w1f2pk5r3x2y";
     var clientSecret = "7XrmOoEUZC27RAUN";
+    var accessToken = null;
 
     const Http = new XMLHttpRequest();
     const url='https://www.linkedin.com/oauth/v2/accessToken?client_id='+clientId+'&client_secret='+clientSecret+'&grant_type=authorization_code&redirect_uri=https://infinite-garden-97012.herokuapp.com/auth/linkedin/callback&code='+accessCode;
@@ -167,6 +168,9 @@ module.exports = function(passport) {
     Http.send();
     Http.onreadystatechange = (e) => {
       console.log(Http.responseText)
+      console.log("accessToken");
+      console.log(accessToken);
+      accessToken = Http.responseText.accessToken;
     }
 
 
@@ -174,29 +178,29 @@ module.exports = function(passport) {
     // This sample code will make a request to LinkedIn's API to retrieve and print out some
     // basic profile information for the user whose access token you provide.
     // Replace with access token for the r_liteprofile permission
-  //   const options = {
-  //     host: 'api.linkedin.com',
-  //     path: '/v2/me',
-  //     method: 'GET',
-  //     headers: {
-  //       'Authorization': `Bearer ${accessToken}`,
-  //       'cache-control': 'no-cache',
-  //       'X-Restli-Protocol-Version': '2.0.0'
-  //     }
-  //   };
-  //   const profileRequest = https.request(options, function(res) {
-  //     let data = '';
-  //     res.on('data', (chunk) => {
-  //       data += chunk;
-  //     });
-  //     res.on('end', () => {
-  //       console.log('gets in here?')
-  //       const profileData = JSON.parse(data);
-  //       console.log(JSON.stringify(profileData, 0, 2));
-  //     });
-  //   });
-  //   profileRequest.end();
-  //   res.render('login')
+    const options = {
+      host: 'api.linkedin.com',
+      path: '/v2/me',
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'cache-control': 'no-cache',
+        'X-Restli-Protocol-Version': '2.0.0'
+      }
+    };
+    const profileRequest = https.request(options, function(res) {
+      let data = '';
+      res.on('data', (chunk) => {
+        data += chunk;
+      });
+      res.on('end', () => {
+        console.log('gets in here?')
+        const profileData = JSON.parse(data);
+        console.log(JSON.stringify(profileData, 0, 2));
+      });
+    });
+    profileRequest.end();
+    res.render('login')
   });
 
   return router;
