@@ -4,6 +4,7 @@ var express = require('express');
 var router = express.Router();
 var models = require('../models/models');
 const https = require('https');
+const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 const fs = require('fs');
 const AWS = require('aws-sdk');
