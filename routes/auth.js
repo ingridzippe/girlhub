@@ -159,15 +159,11 @@ module.exports = function(passport) {
     console.log(req.body);
     console.log("req.params");
     console.log(req.params);
-    var url_string = window.location.href; //window.location.href
-    var url = new URL(url_string);
-    var c = url.searchParams.get("code");
-    console.log(c);
 
     // This sample code will make a request to LinkedIn's API to retrieve and print out some
     // basic profile information for the user whose access token you provide.
     // Replace with access token for the r_liteprofile permission
-    const accessToken = req.params.code;
+    const accessToken = req.query.code;
     console.log(accessToken);
     const options = {
       host: 'api.linkedin.com',
