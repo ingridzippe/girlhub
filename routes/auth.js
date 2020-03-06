@@ -151,7 +151,14 @@ module.exports = function(passport) {
 
   router.get('/auth/linkedin/callback', function(req, res) {
     console.log("callback");
-    console.log(req.params);
+
+    console.log("window")
+    console.log(window.location.href);
+    var url_string = window.location.href; //window.location.href
+    var url = new URL(url_string);
+    var c = url.searchParams.get("code");
+    console.log(c);
+
     // This sample code will make a request to LinkedIn's API to retrieve and print out some
     // basic profile information for the user whose access token you provide.
     // Replace with access token for the r_liteprofile permission
