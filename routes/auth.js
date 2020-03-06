@@ -146,8 +146,7 @@ module.exports = function(passport) {
 
   router.get('/linkedin', function(req, res) {
     console.log("linkedin");
-
-    GET https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id={78w1f2pk5r3x2y}&redirect_uri=https%3A%2F%2Fdev.example.com%2Fauth%2Flinkedin%2Fcallback&state=fooobar&scope=r_liteprofile%20r_emailaddress%20w_member_social
+    res.redirect("https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=78w1f2pk5r3x2y&redirect_uri=https://infinite-garden-97012.herokuapp.com/auth/linkedin/callback&state=fooobar&scope=r_liteprofile%20r_emailaddress%20w_member_social");
     // This sample code will make a request to LinkedIn's API to retrieve and print out some
     // basic profile information for the user whose access token you provide.
     // Replace with access token for the r_liteprofile permission
@@ -173,7 +172,12 @@ module.exports = function(passport) {
   //     });
   //   });
   //   profileRequest.end();
-  // });
+  });
+
+  router.get('/auth/linkedin/callback', function(req, res) {
+    console.log("callback");
+    res.render('signup');
+  });
 
   return router;
 };
