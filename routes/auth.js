@@ -152,12 +152,8 @@ module.exports = function(passport) {
 
   router.get('/auth/linkedin/callback', function(req, res) {
     console.log("callback");
-    console.log("req.query.code");
-    console.log(req.query.code);
 
     const accessCode = req.query.code;
-    console.log(accessCode);
-
     var clientId = "78w1f2pk5r3x2y";
     var clientSecret = "7XrmOoEUZC27RAUN";
     var accessToken = null;
@@ -167,39 +163,40 @@ module.exports = function(passport) {
     Http.open("GET", url);
     Http.send();
     Http.onreadystatechange = (e) => {
-      console.log(Http.responseText)
       console.log("accessToken");
       accessToken = Http.responseText.access_token;
       console.log(accessToken);
+      console.log("Http.responseText");
+      console.log(Http.responseText)
     }
-
-
 
     // This sample code will make a request to LinkedIn's API to retrieve and print out some
     // basic profile information for the user whose access token you provide.
     // Replace with access token for the r_liteprofile permission
-    const options = {
-      host: 'api.linkedin.com',
-      path: '/v2/me',
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${accessToken}`,
-        'cache-control': 'no-cache',
-        'X-Restli-Protocol-Version': '2.0.0'
-      }
-    };
-    const profileRequest = https.request(options, function(res) {
-      let data = '';
-      res.on('data', (chunk) => {
-        data += chunk;
+    if (accessToken != null) {
+      const options = {
+        host: 'api.linkedin.com',
+        path: '/v2/me',
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'cache-control': 'no-cache',
+          'X-Restli-Protocol-Version': '2.0.0'
+        }
+      };
+      const profileRequest = https.request(options, function(res) {
+        let data = '';
+        res.on('data', (chunk) => {
+          data += chunk;
+        });
+        res.on('end', () => {
+          console.log('gets in here?')
+          const profileData = JSON.parse(data);
+          console.log(JSON.stringify(profileData, 0, 2));
+        });
       });
-      res.on('end', () => {
-        console.log('gets in here?')
-        const profileData = JSON.parse(data);
-        console.log(JSON.stringify(profileData, 0, 2));
-      });
-    });
-    profileRequest.end();
+      profileRequest.end();
+    }
     res.render('login')
   });
 
