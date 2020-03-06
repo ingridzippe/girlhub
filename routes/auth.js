@@ -163,11 +163,10 @@ module.exports = function(passport) {
     Http.open("GET", url);
     Http.send();
     Http.onreadystatechange = (e) => {
+      var accessObj = JSON.parse(Http.responseText);
       console.log("accessToken");
-      accessToken = Http.responseText.access_token;
+      accessToken = accessObj.access_token;
       console.log(accessToken);
-      console.log("Http.responseText");
-      console.log(Http.responseText)
 
       // This sample code will make a request to LinkedIn's API to retrieve and print out some
       // basic profile information for the user whose access token you provide.
@@ -196,7 +195,7 @@ module.exports = function(passport) {
         });
         profileRequest.end();
       }
-      
+
     }
 
     res.render('login')
