@@ -223,7 +223,7 @@ module.exports = function(passport) {
             const profileData = JSON.parse(data);
             console.log(JSON.stringify(profileData, 0, 2));
             console.log("email");
-            console.log(profileData.email);
+            console.log(profileData.elements.emailAddress);
           });
         });
         profileRequest2.end();
