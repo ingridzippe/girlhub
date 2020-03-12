@@ -172,8 +172,7 @@ module.exports = function(passport) {
       // basic profile information for the user whose access token you provide.
       // Replace with access token for the r_liteprofile permission
       if (accessToken != null) {
-
-        const optionsNames = {
+        const options = {
           host: 'api.linkedin.com',
           path: '/v2/me',
           method: 'GET',
@@ -183,7 +182,7 @@ module.exports = function(passport) {
             'X-Restli-Protocol-Version': '2.0.0'
           }
         };
-        const profileRequestNames = https.request(optionsNames, function(res) {
+        const profileRequest = https.request(options, function(res) {
           let data = '';
           res.on('data', (chunk) => {
             data += chunk;
@@ -194,38 +193,13 @@ module.exports = function(passport) {
             console.log(JSON.stringify(profileData, 0, 2));
             console.log("profileData.localizedLastName");
             console.log(profileData.localizedLastName);
-            console.log("profileData.lastName.en_US");
-            console.log(profileData.lastName.en_US);
+            console.log("profileData.firstName.en_US");
+            console.log(profileData.firstName.en_US);
             console.log("profileData.firstName.en_US");
             console.log(profileData.firstName.en_US);
           });
         });
-        profileRequestNames.end();
-
-        // const optionsEmail = {
-        //   host: 'api.linkedin.com',
-        //   path: '/v2/emailAddress?q=members&projection=(elements*(handle~))',
-        //   method: 'GET',
-        //   headers: {
-        //     'Authorization': `Bearer ${accessToken}`,
-        //     'cache-control': 'no-cache',
-        //     'X-Restli-Protocol-Version': '2.0.0'
-        //   }
-        // };
-        // const profileRequestEmail = https.request(optionsEmail, function(res) {
-        //   let data = '';
-        //   res.on('data', (chunk) => {
-        //     data += chunk;
-        //   });
-        //   res.on('end', () => {
-        //     console.log('gets in here?')
-        //     const profileData = JSON.parse(data);
-        //     console.log("emailData");
-        //     console.log(data);
-        //   });
-        // });
-        // profileRequestEmail.end();
-
+        profileRequest.end();
       }
 
     }
