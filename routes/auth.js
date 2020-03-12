@@ -172,6 +172,8 @@ module.exports = function(passport) {
       // basic profile information for the user whose access token you provide.
       // Replace with access token for the r_liteprofile permission
       if (accessToken != null) {
+
+        // printing info
         const options = {
           host: 'api.linkedin.com',
           path: '/v2/me',
@@ -194,6 +196,32 @@ module.exports = function(passport) {
           });
         });
         profileRequest.end();
+
+        // printing email
+        const options2 = {
+          host: 'api.linkedin.com',
+          path: '/v2/emailAddress?q=members&projection=(elements*(handle~))',
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'cache-control': 'no-cache',
+            'X-Restli-Protocol-Version': '2.0.0'
+          }
+        };
+        const profileRequest2 = https.request(options2, function(res) {
+          let data = '';
+          res.on('data', (chunk) => {
+            data += chunk;
+          });
+          res.on('end', () => {
+            console.log('gets in here?')
+            const profileData = JSON.parse(data);
+            console.log(JSON.stringify(profileData, 0, 2));
+          });
+        });
+        profileRequest2.end();
+
+
       }
 
     }
