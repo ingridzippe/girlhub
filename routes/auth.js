@@ -193,10 +193,6 @@ module.exports = function(passport) {
             console.log('gets in here?')
             const profileData = JSON.parse(data);
             console.log(JSON.stringify(profileData, 0, 2));
-            console.log("firstName");
-            console.log(profileData.firstName.en_US);
-            console.log("lastName");
-            console.log(profileData.lastName.en_US);
           });
         });
         profileRequest.end();
@@ -218,7 +214,7 @@ module.exports = function(passport) {
             data += chunk;
           });
           res.on('end', () => {
-            console.log('email')
+            console.log('gets in here?')
             const profileData = JSON.parse(data);
             console.log(JSON.stringify(profileData, 0, 2));
           });
