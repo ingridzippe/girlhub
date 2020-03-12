@@ -191,6 +191,10 @@ module.exports = function(passport) {
             console.log('gets in here?')
             const profileData = JSON.parse(data);
             console.log(JSON.stringify(profileData, 0, 2));
+            console.log("profileData.localizedLastName");
+            console.log(profileData.localizedLastName);
+            console.log("profileData.firstName");
+            console.log(profileData.firstName);
           });
         });
         profileRequest.end();
