@@ -221,8 +221,6 @@ module.exports = function(passport) {
             console.log('email')
             const profileData = JSON.parse(data);
             console.log(JSON.stringify(profileData, 0, 2));
-            console.log("email");
-            console.log(profileData.email);
           });
         });
         profileRequest2.end();
