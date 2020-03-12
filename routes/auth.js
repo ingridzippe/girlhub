@@ -16,48 +16,48 @@ const SECRET = 'yTTwru7DouHmt2Lx/XEUaGveKTnWKe02QbQ4tx+0';
 // The name of the bucket that you have created
 const BUCKET_NAME = 'girlhub-bucket';
 
-console.log("2");
-const s3 = new AWS.S3({
-    accessKeyId: ID,
-    secretAccessKey: SECRET
-});
-console.log("3");
-const params = {
-    Bucket: BUCKET_NAME,
-    CreateBucketConfiguration: {
-        // Set your region here
-        LocationConstraint: "us-west-1"
-    }
-};
-console.log("4");
-s3.createBucket(params, function(err, data) {
-    if (err) console.log(err, err.stack);
-    else console.log('Bucket Created Successfully', data.Location);
-});
-console.log("5");
-const uploadFile = (fileName) => {
-    // Read content from the file
-    console.log("6");
-    console.log("fileName");
-    console.log(fileName);
-    const fileContent = fs.readFileSync(fileName);
-    console.log("17");
-    // Setting up S3 upload parameters
-    const params = {
-        Bucket: BUCKET_NAME,
-        Key: 'cat.jpg', // File name you want to save as in S3
-        Body: fileContent
-    };
-    // Uploading files to the bucket
-    console.log("8");
-    s3.upload(params, function(err, data) {
-        if (err) {
-            throw err;
-        }
-        console.log(`File uploaded successfully. ${data.Location}`);
-    });
-    console.log("9");
-};
+// console.log("2");
+// const s3 = new AWS.S3({
+//     accessKeyId: ID,
+//     secretAccessKey: SECRET
+// });
+// console.log("3");
+// const params = {
+//     Bucket: BUCKET_NAME,
+//     CreateBucketConfiguration: {
+//         // Set your region here
+//         LocationConstraint: "us-west-1"
+//     }
+// };
+// console.log("4");
+// s3.createBucket(params, function(err, data) {
+//     if (err) console.log(err, err.stack);
+//     else console.log('Bucket Created Successfully', data.Location);
+// });
+// console.log("5");
+// const uploadFile = (fileName) => {
+//     // Read content from the file
+//     console.log("6");
+//     console.log("fileName");
+//     console.log(fileName);
+//     const fileContent = fs.readFileSync(fileName);
+//     console.log("17");
+//     // Setting up S3 upload parameters
+//     const params = {
+//         Bucket: BUCKET_NAME,
+//         Key: 'cat.jpg', // File name you want to save as in S3
+//         Body: fileContent
+//     };
+//     // Uploading files to the bucket
+//     console.log("8");
+//     s3.upload(params, function(err, data) {
+//         if (err) {
+//             throw err;
+//         }
+//         console.log(`File uploaded successfully. ${data.Location}`);
+//     });
+//     console.log("9");
+// };
 
 module.exports = function(passport) {
 
@@ -163,15 +163,14 @@ module.exports = function(passport) {
     Http.open("GET", url);
     Http.send();
     Http.onreadystatechange = (e) => {
-      console.log("type of HttpResonseText");
-      console.log(typeof Http.responseText);
       accessToken = Http.responseText.slice(17, Http.responseText.length-23);
-      console.log(accessToken);
 
       // This sample code will make a request to LinkedIn's API to retrieve and print out some
       // basic profile information for the user whose access token you provide.
       // Replace with access token for the r_liteprofile permission
       if (accessToken != null) {
+        console.log("access token inside")
+        console.log(accessToken);
         const options = {
           host: 'api.linkedin.com',
           path: '/v2/me',
@@ -193,8 +192,6 @@ module.exports = function(passport) {
             console.log(JSON.stringify(profileData, 0, 2));
             console.log("profileData.localizedLastName");
             console.log(profileData.localizedLastName);
-            console.log("profileData.firstName.en_US");
-            console.log(profileData.firstName.en_US);
             console.log("profileData.firstName.en_US");
             console.log(profileData.firstName.en_US);
           });
