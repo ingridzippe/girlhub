@@ -194,7 +194,8 @@ module.exports = function(passport) {
             const profileData = JSON.parse(data);
             console.log(JSON.stringify(profileData, 0, 2));
             // console.log("profileData.firstName.en_US");
-            // console.log(profileData.firstName.en_US);
+            console.log("LAST NAME");
+            console.log(profileData.lastName.localized.en_US);
             // console.log("profileData.lastName.en_US");
             // console.log(profileData.lastName.en_US);
           });
