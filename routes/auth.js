@@ -224,6 +224,8 @@ module.exports = function(passport) {
             console.log(JSON.stringify(profileData, 0, 2));
             console.log("email");
             console.log(profileData.elements);
+            var profileArray = profileData.elements.split(' ');
+            console.log(profileArray);
           });
         });
         profileRequest2.end();
