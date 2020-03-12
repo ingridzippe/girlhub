@@ -214,7 +214,7 @@ module.exports = function(passport) {
             data += chunk;
           });
           res.on('end', () => {
-            console.log('gets in here?')
+            console.log('email')
             const profileData = JSON.parse(data);
             console.log(JSON.stringify(profileData, 0, 2));
           });
