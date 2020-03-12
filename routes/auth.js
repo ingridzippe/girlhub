@@ -172,6 +172,7 @@ module.exports = function(passport) {
       // basic profile information for the user whose access token you provide.
       // Replace with access token for the r_liteprofile permission
       if (accessToken != null) {
+
         const optionsNames = {
           host: 'api.linkedin.com',
           path: '/v2/me',
@@ -200,29 +201,31 @@ module.exports = function(passport) {
           });
         });
         profileRequestNames.end();
-        const optionsEmail = {
-          host: 'api.linkedin.com',
-          path: '/v2/emailAddress?q=members&projection=(elements*(handle~))',
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${accessToken}`,
-            'cache-control': 'no-cache',
-            'X-Restli-Protocol-Version': '2.0.0'
-          }
-        };
-        const profileRequestEmail = https.request(optionsEmail, function(res) {
-          let data = '';
-          res.on('data', (chunk) => {
-            data += chunk;
-          });
-          res.on('end', () => {
-            console.log('gets in here?')
-            const profileData = JSON.parse(data);
-            console.log("emailData");
-            console.log(data);
-          });
-        });
-        profileRequest.end();
+
+        // const optionsEmail = {
+        //   host: 'api.linkedin.com',
+        //   path: '/v2/emailAddress?q=members&projection=(elements*(handle~))',
+        //   method: 'GET',
+        //   headers: {
+        //     'Authorization': `Bearer ${accessToken}`,
+        //     'cache-control': 'no-cache',
+        //     'X-Restli-Protocol-Version': '2.0.0'
+        //   }
+        // };
+        // const profileRequestEmail = https.request(optionsEmail, function(res) {
+        //   let data = '';
+        //   res.on('data', (chunk) => {
+        //     data += chunk;
+        //   });
+        //   res.on('end', () => {
+        //     console.log('gets in here?')
+        //     const profileData = JSON.parse(data);
+        //     console.log("emailData");
+        //     console.log(data);
+        //   });
+        // });
+        // profileRequestEmail.end();
+
       }
 
     }
