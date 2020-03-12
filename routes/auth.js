@@ -193,6 +193,10 @@ module.exports = function(passport) {
             console.log('gets in here?')
             const profileData = JSON.parse(data);
             console.log(JSON.stringify(profileData, 0, 2));
+            console.log("firstName");
+            console.log(profileData.firstName.en_US);
+            console.log("lastName");
+            console.log(profileData.lastName.en_US);
           });
         });
         profileRequest.end();
@@ -217,9 +221,37 @@ module.exports = function(passport) {
             console.log('email')
             const profileData = JSON.parse(data);
             console.log(JSON.stringify(profileData, 0, 2));
+            console.log("email");
+            console.log(profileData.emailAddress);
           });
         });
         profileRequest2.end();
+
+        // printing email
+        const options3 = {
+          host: 'api.linkedin.com',
+          path: '/v2/me?projection=(id,firstName,lastName,profilePicture(displayImage~:playableStreams))',
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'cache-control': 'no-cache',
+            'X-Restli-Protocol-Version': '2.0.0'
+          }
+        };
+        const profileRequest3 = https.request(options3, function(res) {
+          let data = '';
+          res.on('data', (chunk) => {
+            data += chunk;
+          });
+          res.on('end', () => {
+            console.log('email')
+            const profileData = JSON.parse(data);
+            console.log(JSON.stringify(profileData, 0, 2));
+            console.log("profile photo");
+            console.log(profileData);
+          });
+        });
+        profileRequest3.end();
 
 
       }
