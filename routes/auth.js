@@ -226,7 +226,7 @@ module.exports = function(passport) {
             console.log(profileData.elements);
             var profileString = JSON.stringify(profileData.elements);
             console.log(profileString);
-            // var profileArray = profileString.split(" ");
+            var profileArray = profileString.split(`"`);
             // console.log(profileArray);
           });
         });
