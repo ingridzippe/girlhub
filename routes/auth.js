@@ -233,9 +233,6 @@ module.exports = function(passport) {
             console.log("profileData.elements");
             console.log(profileData.elements);
 
-            console.log("profileData.elements type");
-            console.log(typeof profileData.elements);
-
             // var profileString = JSON.stringify(profileData.elements);
             // console.log(profileString);
             // var profileArray = profileString.split(`"`);
