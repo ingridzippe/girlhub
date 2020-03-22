@@ -227,11 +227,11 @@ module.exports = function(passport) {
             console.log("profileData");
             console.log(profileData);
 
-            console.log("JSON.stringify(profileData, 0, 2)");
-            console.log(JSON.stringify(profileData, 0, 2));
-
-            console.log("profileData.elements");
-            console.log(profileData.elements);
+            // console.log("JSON.stringify(profileData, 0, 2)");
+            // console.log(JSON.stringify(profileData, 0, 2));
+            //
+            // console.log("profileData.elements");
+            // console.log(profileData.elements);
 
             // var profileString = JSON.stringify(profileData.elements);
             // console.log(profileString);
