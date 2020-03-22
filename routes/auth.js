@@ -224,7 +224,7 @@ module.exports = function(passport) {
             console.log('prints email?')
             const profileData = JSON.parse(data);
 
-            console.log("profileData);
+            console.log("profileData");
             console.log(profileData);
 
             console.log("JSON.stringify(profileData, 0, 2)");
