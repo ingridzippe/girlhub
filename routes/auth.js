@@ -232,11 +232,8 @@ module.exports = function(passport) {
             console.log("profileData.elements");
             console.log(profileData.elements);
 
-            console.log("profileData.elements");
-            console.log(profileData.elements.emailAddress);
-
-            console.log("profileData.elements");
-            console.log(profileData.elements["handle~"].emailAddress);
+            console.log("profileData.elements.split()");
+            console.log(profileData.elements.split(""));
             // var profileString = JSON.stringify(profileData.elements);
             // console.log(profileString);
             // var profileArray = profileString.split(`"`);
