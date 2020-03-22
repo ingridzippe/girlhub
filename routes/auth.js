@@ -222,10 +222,15 @@ module.exports = function(passport) {
           res.on('end', () => {
             console.log('prints email?')
             const profileData = JSON.parse(data);
+
+            console.log("profileData");
             console.log(profileData);
-            // console.log(JSON.stringify(profileData, 0, 2));
-            // console.log("email");
-            // console.log(profileData.elements);
+
+            console.log("JSON.stringify(profileData, 0, 2)");
+            console.log(JSON.stringify(profileData, 0, 2));
+
+            console.log("profileData.elements");
+            console.log(profileData.elements);
             // var profileString = JSON.stringify(profileData.elements);
             // console.log(profileString);
             // var profileArray = profileString.split(`"`);
