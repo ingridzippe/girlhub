@@ -203,34 +203,34 @@ module.exports = function(passport) {
         profileRequest.end();
 
         // printing email
-        const options2 = {
-          host: 'api.linkedin.com',
-          path: '/v2/emailAddress?q=members&projection=(elements*(handle~))',
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${accessToken}`,
-            'cache-control': 'no-cache',
-            'X-Restli-Protocol-Version': '2.0.0'
-          }
-        };
-        const profileRequest2 = https.request(options2, function(res) {
-          let data = '';
-          res.on('data', (chunk) => {
-            data += chunk;
-          });
-          res.on('end', () => {
-            console.log('gets in here?')
-            const profileData = JSON.parse(data);
-            console.log(JSON.stringify(profileData, 0, 2));
-            console.log("email");
-            console.log(profileData.elements);
-            var profileString = JSON.stringify(profileData.elements);
-            console.log(profileString);
-            var profileArray = profileString.split(`"`);
-            // console.log(profileArray);
-          });
-        });
-        profileRequest2.end();
+        // const options2 = {
+        //   host: 'api.linkedin.com',
+        //   path: '/v2/emailAddress?q=members&projection=(elements*(handle~))',
+        //   method: 'GET',
+        //   headers: {
+        //     'Authorization': `Bearer ${accessToken}`,
+        //     'cache-control': 'no-cache',
+        //     'X-Restli-Protocol-Version': '2.0.0'
+        //   }
+        // };
+        // const profileRequest2 = https.request(options2, function(res) {
+        //   let data = '';
+        //   res.on('data', (chunk) => {
+        //     data += chunk;
+        //   });
+        //   res.on('end', () => {
+        //     console.log('gets in here?')
+        //     const profileData = JSON.parse(data);
+        //     console.log(JSON.stringify(profileData, 0, 2));
+        //     console.log("email");
+        //     console.log(profileData.elements);
+        //     var profileString = JSON.stringify(profileData.elements);
+        //     console.log(profileString);
+        //     var profileArray = profileString.split(`"`);
+        //     // console.log(profileArray);
+        //   });
+        // });
+        // profileRequest2.end();
 
 
       }
