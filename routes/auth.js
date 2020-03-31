@@ -192,13 +192,13 @@ module.exports = function(passport) {
           res.on('end', () => {
             console.log('gets in here?')
             const profileData = JSON.parse(data);
-            console.log(profileData);
-            console.log(JSON.stringify(profileData, 0, 2));
-            console.log("profileData.firstName.en_US");
-            console.log("LAST NAME");
-            console.log(profileData.lastName.localized.en_US);
-            console.log("profileData.lastName.en_US");
-            console.log(profileData.lastName.en_US);
+            // console.log(profileData);
+            // console.log(JSON.stringify(profileData, 0, 2));
+            // console.log("profileData.firstName.en_US");
+            // console.log("LAST NAME");
+            // console.log(profileData.lastName.localized.en_US);
+            // console.log("profileData.lastName.en_US");
+            // console.log(profileData.lastName.en_US);
           });
         });
         profileRequest.end();
@@ -265,11 +265,11 @@ module.exports = function(passport) {
             console.log("profileData");
             console.log(profileData);
         
-            console.log("JSON.stringify(profileData, 0, 2)");
-            console.log(JSON.stringify(profileData, 0, 2));
+            // console.log("JSON.stringify(profileData, 0, 2)");
+            // console.log(JSON.stringify(profileData, 0, 2));
         
-            console.log("profileData.elements");
-            console.log(profileData.elements);
+            // console.log("profileData.elements");
+            // console.log(profileData.elements);
         
             // var profileString = JSON.stringify(profileData.elements);
             // console.log(profileString);
