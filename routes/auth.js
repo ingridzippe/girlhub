@@ -193,12 +193,12 @@ module.exports = function(passport) {
             console.log('gets in here?')
             const profileData = JSON.parse(data);
             console.log(profileData);
-            // console.log(JSON.stringify(profileData, 0, 2));
-            // console.log("profileData.firstName.en_US");
-            //console.log("LAST NAME");
-            //console.log(profileData.lastName.localized.en_US);
-            // console.log("profileData.lastName.en_US");
-            // console.log(profileData.lastName.en_US);
+            console.log(JSON.stringify(profileData, 0, 2));
+            console.log("profileData.firstName.en_US");
+            console.log("LAST NAME");
+            console.log(profileData.lastName.localized.en_US);
+            console.log("profileData.lastName.en_US");
+            console.log(profileData.lastName.en_US);
           });
         });
         profileRequest.end();
@@ -227,14 +227,14 @@ module.exports = function(passport) {
             console.log("profileData");
             console.log(profileData);
 
-            // console.log("JSON.stringify(profileData, 0, 2)");
-            // console.log(JSON.stringify(profileData, 0, 2));
-            //
-            // console.log("profileData.elements");
-            // console.log(profileData.elements);
+            console.log("JSON.stringify(profileData, 0, 2)");
+            console.log(JSON.stringify(profileData, 0, 2));
+            
+            console.log("profileData.elements");
+            console.log(profileData.elements);
 
-            // var profileString = JSON.stringify(profileData.elements);
-            // console.log(profileString);
+            var profileString = JSON.stringify(profileData.elements);
+            console.log(profileString);
             // var profileArray = profileString.split(`"`);
             // console.log(profileArray);
           });
@@ -242,42 +242,42 @@ module.exports = function(passport) {
         profileRequest2.end();
 
 
-        // printing email
-        // const options2 = {
-        //   host: 'api.linkedin.com',
-        //   path: '/v2/emailAddress?q=members&projection=(elements*(handle~))',
-        //   method: 'GET',
-        //   headers: {
-        //     'Authorization': `Bearer ${accessToken}`,
-        //     'cache-control': 'no-cache',
-        //     'X-Restli-Protocol-Version': '2.0.0'
-        //   }
-        // };
-        // const profileRequest2 = https.request(options2, function(res) {
-        //   let data = '';
-        //   res.on('data', (chunk) => {
-        //     data += chunk;
-        //   });
-        //   res.on('end', () => {
-        //     console.log('prints email?')
-        //     const profileData = JSON.parse(data);
-        //
-        //     console.log("profileData");
-        //     console.log(profileData);
-        //
-        //     console.log("JSON.stringify(profileData, 0, 2)");
-        //     console.log(JSON.stringify(profileData, 0, 2));
-        //
-        //     console.log("profileData.elements");
-        //     console.log(profileData.elements);
-        //
-        //     // var profileString = JSON.stringify(profileData.elements);
-        //     // console.log(profileString);
-        //     // var profileArray = profileString.split(`"`);
-        //     // console.log(profileArray);
-        //   });
-        // });
-        // profileRequest2.end();
+        printing email
+        const options2 = {
+          host: 'api.linkedin.com',
+          path: '/v2/emailAddress?q=members&projection=(elements*(handle~))',
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'cache-control': 'no-cache',
+            'X-Restli-Protocol-Version': '2.0.0'
+          }
+        };
+        const profileRequest2 = https.request(options2, function(res) {
+          let data = '';
+          res.on('data', (chunk) => {
+            data += chunk;
+          });
+          res.on('end', () => {
+            console.log('prints email?')
+            const profileData = JSON.parse(data);
+        
+            console.log("profileData");
+            console.log(profileData);
+        
+            console.log("JSON.stringify(profileData, 0, 2)");
+            console.log(JSON.stringify(profileData, 0, 2));
+        
+            console.log("profileData.elements");
+            console.log(profileData.elements);
+        
+            // var profileString = JSON.stringify(profileData.elements);
+            // console.log(profileString);
+            // var profileArray = profileString.split(`"`);
+            // console.log(profileArray);
+          });
+        });
+        profileRequest2.end();
 
 
       }
