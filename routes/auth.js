@@ -242,7 +242,7 @@ module.exports = function(passport) {
         profileRequest2.end();
 
 
-        printing email
+        // printing email
         const options2 = {
           host: 'api.linkedin.com',
           path: '/v2/emailAddress?q=members&projection=(elements*(handle~))',
